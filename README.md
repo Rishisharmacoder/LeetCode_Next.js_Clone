@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LeetCode Clone
+
+A modern coding platform inspired by LeetCode, built with Next.js, Prisma, PostgreSQL, and Clerk authentication. It includes a homepage, problem browsing, user profile tracking, playlist management, and an admin flow for creating coding challenges.
+
+## Features
+
+- Interactive home page with marketing sections and call-to-action blocks
+- Problem listing and detail experience for coding challenges
+- User authentication and session management with Clerk
+- Personalized profile page with solved problems and submission history
+- Playlist support for saving and organizing practice sets
+- Admin support to create new problems
+- Dark mode support and responsive UI
+- PostgreSQL database integration with Prisma ORM
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Prisma ORM
+- PostgreSQL
+- Clerk Auth
+- Monaco Editor
+- Docker Compose
+
+## Project Structure
+
+```bash
+.
+├── app/
+│   ├── (auth)/
+│   ├── (root)/
+│   ├── api/
+│   └── globals.css
+├── components/
+├── modules/
+├── prisma/
+├── public/
+├── docker-compose.yml
+├── package.json
+├── next.config.ts
+├── tsconfig.json
+└── README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Start PostgreSQL with Docker
+
+```bash
+docker compose up -d
+```
+
+### 3. Set up environment variables
+
+Create a `.env` file in the root directory and add the required variables:
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres123@localhost:5435/leetcode"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+CLERK_SECRET_KEY="your_clerk_secret_key"
+NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
+NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/"
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/"
+```
+
+### 4. Generate Prisma client
+
+```bash
+npx prisma generate
+```
+
+### 5. Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
 
-## Learn More
+## Database
 
-To learn more about Next.js, take a look at the following resources:
+This project uses PostgreSQL and Prisma. The database is started through Docker Compose using the configuration defined in `docker-compose.yml`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Authentication is handled by Clerk. You need to configure your own Clerk project and add the publishable and secret keys in the environment variables.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome. If you want to improve the platform, please fork the repository, create a feature branch, and submit a pull request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License.
