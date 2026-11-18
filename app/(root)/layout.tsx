@@ -6,10 +6,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const userRole = await currentUserRole();
   const role = typeof userRole === "string" ? userRole : "USER";
   return (
-    <main className="flex flex-col min-h-screen max-h-screen">
+    <main className="flex min-h-screen min-w-0 flex-col">
       {/* Navbar */}
       <Navbar UserRole={role} />
-      <div className="flex-1 flex flex-col px-4 pb-4">
+      <div className="flex min-w-0 flex-1 flex-col px-2 pb-4 sm:px-4">
         <div className="absolute inset-0 -z-10 h-full w-full bg-background dark:bg-[radial-gradient(#393e4a_1px,transparent_1px)] dark:bg-size-[16px_16px] bg-[radial-gradient(#dadde2_1px,transparent_1px)] bg-size-[16px_16px]" />
         {children}
       </div>

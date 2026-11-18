@@ -47,9 +47,9 @@ const stats = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen py-32 px-4">
+    <div className="min-h-screen px-4 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <section className="mb-20 text-center">
+        <section className="mb-16 text-center sm:mb-20">
           <Badge
             variant="secondary"
             className="mb-6 border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300"
@@ -57,11 +57,11 @@ export default function AboutPage() {
             About us
           </Badge>
 
-          <h1 className="mb-6 text-4xl font-black tracking-tight text-gray-900 dark:text-white md:text-6xl">
+          <h1 className="mb-6 text-3xl font-black tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-6xl">
             Learn, practice, and level up your coding skills.
           </h1>
 
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 dark:text-gray-300 md:text-xl">
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg md:text-xl">
             This platform is designed to help developers improve through
             real-world problem solving, focused practice, and measurable progress.
             Whether you are just starting or preparing for technical interviews,
@@ -69,7 +69,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="grid gap-6 md:grid-cols-4">
+        <section className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {stats.map((stat) => (
             <div
               key={stat.label}
@@ -85,34 +85,34 @@ export default function AboutPage() {
           ))}
         </section>
 
-        <section className="mt-20 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <section className="mt-16 grid gap-8 sm:mt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400">
               Our mission
             </p>
-            <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+            <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
               Build everyday confidence through consistent coding practice.
             </h2>
-            <p className="mb-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mb-4 text-base text-gray-600 dark:text-gray-300 sm:text-lg">
               We believe coding is a skill that improves with repetition,
               curiosity, and discipline. Our goal is to make that process simple,
               engaging, and motivating for developers at every level.
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-base text-gray-600 dark:text-gray-300 sm:text-lg">
               From beginner concepts to advanced problem-solving, the experience is
               designed to keep you moving forward with clear challenges and practical
               feedback.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-indigo-50 p-8 shadow-lg dark:border-amber-900 dark:from-amber-950/60 dark:to-indigo-950/60">
+          <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-indigo-50 p-5 shadow-lg sm:p-8 dark:border-amber-900 dark:from-amber-950/60 dark:to-indigo-950/60">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-lg">
               <Code2 className="h-6 w-6" />
             </div>
-            <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-white">
+            <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">
               Why this platform exists
             </h3>
-            <ul className="space-y-4 text-gray-700 dark:text-gray-200">
+            <ul className="space-y-4 text-sm text-gray-700 sm:text-base dark:text-gray-200">
               <li>• Focus on hands-on problem-solving over theory alone.</li>
               <li>• Encourages steady progress instead of random practice.</li>
               <li>• Helps learners build interview-ready technical confidence.</li>
@@ -120,12 +120,12 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-20">
-          <div className="mb-10 text-center">
+        <section className="mt-16 sm:mt-20">
+          <div className="mb-8 text-center sm:mb-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
               Highlights
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
               What makes this experience valuable
             </h2>
           </div>
@@ -154,11 +154,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-20 rounded-3xl border border-gray-200 bg-white/80 px-8 py-10 text-center shadow-sm dark:border-gray-800 dark:bg-neutral-900/60">
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+        <section className="mt-16 rounded-3xl border border-gray-200 bg-white/80 px-4 py-8 text-center shadow-sm sm:mt-20 sm:px-8 sm:py-10 dark:border-gray-800 dark:bg-neutral-900/60">
+          <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
             Ready to start solving?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+          <p className="mx-auto mb-8 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg">
             Jump into the practice arena and begin improving your coding skills with
             every challenge you solve.
           </p>

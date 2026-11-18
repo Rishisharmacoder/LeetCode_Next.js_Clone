@@ -210,7 +210,7 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-8 p-6">
+    <div className="mx-auto w-full max-w-7xl space-y-6 p-3 sm:space-y-8 sm:p-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
@@ -237,7 +237,7 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
           </div>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="p-3 sm:p-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -261,7 +261,7 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
                   }
                 }}
               >
-                <SelectTrigger className="w-45">
+                <SelectTrigger className="w-full sm:w-45">
                   <SelectValue placeholder="Select difficulty" />
                 </SelectTrigger>
 
@@ -285,7 +285,7 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
                   }
                 }}
               >
-                <SelectTrigger className="w-45">
+                <SelectTrigger className="w-full sm:w-45">
                   <SelectValue placeholder="Select tag" />
                 </SelectTrigger>
 
@@ -306,8 +306,8 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
 
       {/* Table */}
       <Card>
-        <CardContent className="p-0">
-          <Table>
+        <CardContent className="min-w-0 p-0">
+          <Table className="min-w-[640px]">
             <TableHeader>
               <TableRow>
                 <TableHead className="w-25">Solved</TableHead>
@@ -430,14 +430,14 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
             Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
             {Math.min(currentPage * itemsPerPage, filteredProblems.length)} of{" "}
             {filteredProblems.length} problems
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <Button
               variant="outline"
               size="sm"

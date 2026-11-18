@@ -216,12 +216,12 @@ const ProblemIdPage = ({
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="mx-auto w-full max-w-7xl p-3 sm:p-6">
         {/* Header */}
 
-        <div className="mb-6 flex items-start justify-between">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <div className="mb-4 flex min-w-0 flex-wrap items-center gap-2 sm:gap-4">
               <Link href="/">
                 <Button
                   variant="outline"
@@ -231,7 +231,7 @@ const ProblemIdPage = ({
                 </Button>
               </Link>
 
-              <h1 className="text-3xl font-bold">
+              <h1 className="min-w-0 break-words text-2xl font-bold sm:text-3xl">
                 {problem?.title}
               </h1>
 
@@ -262,13 +262,15 @@ const ProblemIdPage = ({
             </div>
           </div>
 
-          <ModeToggle />
+          <div className="self-end sm:self-auto">
+            <ModeToggle />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Left Panel - Problem Description */}
 
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -281,7 +283,7 @@ const ProblemIdPage = ({
               <CardContent>
                 <div className="space-y-6">
                   <p className="text-foreground leading-relaxed">
-                    {problem?.description}
+                    <span className="break-words">{problem?.description}</span>
                   </p>
 
                   {/* Examples */}
@@ -300,7 +302,7 @@ const ProblemIdPage = ({
                             Input:{" "}
                           </span>
 
-                          <code className="text-sm dark:bg-zinc-900 bg-zinc-200 text-zinc-900 dark:text-zinc-200 px-2 py-1 rounded">
+                          <code className="break-words rounded bg-zinc-200 px-2 py-1 text-sm text-zinc-900 dark:bg-zinc-900 dark:text-zinc-200">
                             {
                               problem?.examples[
                                 selectedLanguage
@@ -314,7 +316,7 @@ const ProblemIdPage = ({
                             Output:{" "}
                           </span>
 
-                          <code className="text-sm dark:bg-zinc-900 bg-zinc-200 text-zinc-900 dark:text-zinc-200 px-2 py-1 rounded">
+                          <code className="break-words rounded bg-zinc-200 px-2 py-1 text-sm text-zinc-900 dark:bg-zinc-900 dark:text-zinc-200">
                             {
                               problem?.examples[
                                 selectedLanguage
@@ -368,40 +370,34 @@ const ProblemIdPage = ({
                   <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger
                       value="submissions"
-                      className="flex items-center gap-2"
+                      className="min-w-0 justify-center gap-1 px-1 text-[11px] leading-tight sm:gap-2 sm:px-2 sm:text-sm"
                     >
-                      <Trophy className="h-4 w-4" />
+                      <Trophy className="hidden size-4 shrink-0 sm:block" />
                       Submissions
                     </TabsTrigger>
 
                     <TabsTrigger
                       value="editorial"
-                      className="flex items-center gap-2"
+                      className="min-w-0 justify-center gap-1 px-1 text-[11px] leading-tight sm:gap-2 sm:px-2 sm:text-sm"
                     >
-                      <FileText className="h-4 w-4" />
+                      <FileText className="hidden size-4 shrink-0 sm:block" />
                       Editorial
                     </TabsTrigger>
 
                     <TabsTrigger
                       value="hints"
-                      className="flex items-center gap-2"
+                      className="min-w-0 justify-center gap-1 px-1 text-[11px] leading-tight sm:gap-2 sm:px-2 sm:text-sm"
                     >
-                      <Lightbulb className="h-4 w-4" />
+                      <Lightbulb className="hidden size-4 shrink-0 sm:block" />
                       Hints
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent
-                    value="submissions"
-                    className="p-6"
-                  >
+                  <TabsContent value="submissions" className="p-3 sm:p-6">
                     {/* Submission history */}
                   </TabsContent>
 
-                  <TabsContent
-                    value="editorial"
-                    className="p-6"
-                  >
+                  <TabsContent value="editorial" className="p-3 sm:p-6">
                     <div className="text-center py-8 text-muted-foreground">
                       {problem.editorial
                         ? problem.editorial
@@ -409,10 +405,7 @@ const ProblemIdPage = ({
                     </div>
                   </TabsContent>
 
-                  <TabsContent
-                    value="hints"
-                    className="p-6"
-                  >
+                  <TabsContent value="hints" className="p-3 sm:p-6">
                     <div className="text-center py-8 text-muted-foreground">
                       {problem.hints
                         ? problem.hints
@@ -426,13 +419,13 @@ const ProblemIdPage = ({
 
           {/* Right Panel - Code Editor and Test Cases */}
 
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             {/* Code Editor */}
 
             <Card>
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <CardTitle className="flex min-w-0 items-center gap-2 text-base sm:text-lg">
                     <Code className="h-5 w-5" />
 
                     Code Editor
@@ -516,12 +509,12 @@ const ProblemIdPage = ({
                   />
                 </div>
 
-                <div className="flex gap-3 mt-4">
+                <div className="mt-4 flex flex-wrap gap-3">
                   <Button
                     onClick={handleRun}
                     disabled={isRunning}
                     variant="outline"
-                    className="flex items-center gap-2"
+                    className="min-h-11 flex-1 items-center gap-2 sm:flex-none"
                   >
                     <Play className="h-4 w-4" />
 
@@ -533,7 +526,7 @@ const ProblemIdPage = ({
                   <Button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center gap-2"
+                    className="min-h-11 flex-1 items-center gap-2 sm:flex-none"
                   >
                     <Send className="h-4 w-4" />
 

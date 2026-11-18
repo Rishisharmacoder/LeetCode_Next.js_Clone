@@ -808,8 +808,8 @@ const CreateProblemForm = () => {
       <Card className="shadow-xl">
         <CardHeader className="pb-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <CardTitle className="text-3xl flex items-center gap-3">
-              <FileText className="w-8 h-8 text-amber-600" />
+            <CardTitle className="flex items-center gap-2 text-2xl sm:gap-3 sm:text-3xl">
+                <FileText className="size-6 shrink-0 text-amber-600 sm:size-8" />
               Create Problem
             </CardTitle>
 
@@ -849,7 +849,7 @@ const CreateProblemForm = () => {
           <Separator />
         </CardHeader>
 
-        <CardContent className="p-6">
+        <CardContent className="p-3 sm:p-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* Basic Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -942,7 +942,7 @@ const CreateProblemForm = () => {
             {/* Tags */}
             <Card className="bg-amber-50 dark:bg-amber-950/20">
               <CardHeader className="pb-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <CardTitle className="text-xl flex items-center gap-2">
                     <BookOpen className="w-5 h-5 text-amber-600" />
                     Tags
@@ -990,7 +990,7 @@ const CreateProblemForm = () => {
             {/* Test Cases */}
             <Card className="bg-green-50 dark:bg-green-950/20">
               <CardHeader className="pb-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <CardTitle className="text-xl flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600" />
                     Test Cases
@@ -1009,7 +1009,7 @@ const CreateProblemForm = () => {
                 {testCaseFields.map((field, index) => (
                   <Card key={field.id} className="bg-background">
                     <CardHeader className="pb-4">
-                      <div className="flex justify-between items-center">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
                         <CardTitle className="text-lg">
                           Test Case #{index + 1}
                         </CardTitle>

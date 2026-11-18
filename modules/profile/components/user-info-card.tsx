@@ -47,7 +47,7 @@ const UserInfoCard = ({
 
   return (
     <Card className="mb-8">
-      <CardContent className="p-8">
+      <CardContent className="p-4 sm:p-8">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
           <div className="relative">
             <Avatar className="w-24 h-24 border-4 border-primary/20">
@@ -68,7 +68,7 @@ const UserInfoCard = ({
           </div>
 
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-3xl font-bold mb-2">
+            <h1 className="mb-2 break-words text-2xl font-bold sm:text-3xl">
               {userData.firstName} {userData.lastName}
             </h1>
 
@@ -76,7 +76,7 @@ const UserInfoCard = ({
               <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4" />
 
-                <span className="text-sm">
+                <span className="break-all text-sm">
                   {userData.email}
                 </span>
               </div>

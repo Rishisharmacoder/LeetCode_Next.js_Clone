@@ -18,15 +18,15 @@ const CreateProblemPage = async () => {
   }
 
   return (
-    <section className='flex flex-col items-center justify-center container mx-4 my-4'>
-            <div className='flex flex-row justify-between items-center w-full'>
+    <section className='container mx-auto flex w-full flex-col items-center justify-center px-3 py-4 sm:px-4'>
+            <div className='mb-4 flex w-full flex-col items-center justify-between gap-3 sm:flex-row'>
                 <Link href={"/"}>
                 <Button variant={"outline"} size={"icon"}>
                     <ArrowLeft className='size-4' />
                 </Button>
                 </Link>
     
-                 <h1 className='text-3xl font-bold text-amber-400'>Welcome {user?.firstName}! Create a Problem</h1>
+                 <h1 className='text-center text-2xl font-bold text-amber-400 sm:text-3xl'>Welcome {user?.firstName}! Create a Problem</h1>
             <ModeToggle/>
             </div>
            <CreateProblemForm/>

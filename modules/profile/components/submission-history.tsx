@@ -124,7 +124,7 @@ const SubmissionsHistory = ({
               key={submission.id}
               className="hover:shadow-md transition-all duration-200"
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-4">

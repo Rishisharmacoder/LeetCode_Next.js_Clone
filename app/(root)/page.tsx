@@ -11,6 +11,7 @@ import {
   Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -93,17 +94,17 @@ export default async function Home() {
           {/* Badge */}
           <Badge
             variant="secondary"
-            className="mb-8 bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900"
+            className="mb-8 max-w-full whitespace-normal bg-amber-50 text-left text-amber-700 hover:bg-amber-100 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300 dark:hover:bg-amber-900"
           >
-            <Star className="w-4 h-4 mr-2" />
+            <Star className="mr-2 size-4 shrink-0" />
             Join 10,000+ developers already coding
           </Badge>
 
           {/* Main Heading */}
-          <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-tight mb-8">
+          <h1 className="mb-8 text-3xl font-black leading-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Master{" "}
             <span className="relative inline-block">
-              <span className="px-6 py-3 bg-amber-500 dark:bg-amber-400 text-white dark:text-gray-900 rounded-2xl transform -rotate-1 inline-block shadow-lg">
+              <span className="inline-block -rotate-1 rounded-xl bg-amber-500 px-3 py-2 text-white shadow-lg sm:rounded-2xl sm:px-6 sm:py-3 dark:bg-amber-400 dark:text-gray-900">
                 Problem
               </span>
             </span>{" "}
@@ -111,14 +112,14 @@ export default async function Home() {
             <br />
             with{" "}
             <span className="relative inline-block">
-              <span className="px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-2xl transform rotate-1 inline-block shadow-lg">
+              <span className="inline-block rotate-1 rounded-xl bg-indigo-600 px-3 py-2 text-white shadow-lg sm:rounded-2xl sm:px-6 sm:py-3 dark:bg-indigo-500">
                 Code
               </span>
             </span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="mx-auto mb-12 max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-xl md:text-2xl">
             Challenge yourself with thousands of coding problems, compete with
             developers worldwide, and accelerate your programming journey with
             real-time feedback and expert solutions.
@@ -126,31 +127,35 @@ export default async function Home() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button
-              size="lg"
-              className="bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-white dark:text-gray-900 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Start Coding Now
-              <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-2 border-indigo-300 dark:border-indigo-600 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950"
-            >
-              Browse Problems
-            </Button>
+            <Link href="/problems">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-500 text-white dark:text-gray-900 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              >
+                <Play className="w-5 h-5 mr-2" />
+                Start Coding Now
+                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link href="/problems">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-indigo-300 dark:border-indigo-600 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950"
+              >
+                Browse Problems
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:gap-8 md:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                <div className="mb-2 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
                   {stat.number}
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 sm:text-base">
                   {stat.label}
                 </div>
               </div>
@@ -162,21 +167,21 @@ export default async function Home() {
       {/* Features Section */}
       <section
         id="features"
-        className="py-24 bg-gray-50 dark:bg-neutral-900/50"
+        className="bg-gray-50 py-16 dark:bg-neutral-900/50 sm:py-24"
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
               Everything you need to{" "}
               <span className="text-amber-600 dark:text-amber-400">excel</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-xl">
               Our platform provides comprehensive tools and resources to help
               you become a better programmer
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
               <Card
                 key={index}
@@ -212,21 +217,21 @@ export default async function Home() {
       </section>
 
       {/* Problem Categories */}
-      <section id="problems" className="py-24">
+      <section id="problems" className="py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
               Choose your{" "}
               <span className="text-indigo-600 dark:text-indigo-400">
                 challenge
               </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-xl">
               From beginner-friendly puzzles to advanced algorithmic challenges
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
             {problemCategories.map((category, index) => (
               <Card
                 key={index}
@@ -272,21 +277,23 @@ export default async function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-amber-600 to-amber-300  dark:from-amber-600 dark:to-indigo-600 rounded-md">
+      <section className="rounded-md bg-gradient-to-r from-amber-600 to-amber-300 py-16 dark:from-amber-600 dark:to-indigo-600 sm:py-24">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
             Ready to start your coding journey?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="mb-8 text-base text-white/90 sm:text-xl">
             Join thousands of developers who are improving their skills every
             day
           </p>
-          <Button
-            size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg"
-          >
-            Get Started for Free
-          </Button>
+          <Link href="/sign-up">
+            <Button
+              size="lg"
+              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg"
+            >
+              Get Started for Free
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
