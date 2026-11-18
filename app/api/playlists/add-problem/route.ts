@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } },
 ): Promise<NextResponse> {
   try {
     const user = await currentUser();

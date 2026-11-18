@@ -2,12 +2,15 @@
 
 import { db } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
-import { includes } from "zod"
 
 
 export const getCurrentUserData = async () => {
     try {
             const user = await currentUser();
+            if (!user) {
+                return null;
+            }
+
             const data = await db.user.findUnique({
                 where: {
                     clerkId: user.id

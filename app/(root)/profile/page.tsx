@@ -11,10 +11,37 @@ const ProfilePage = async() => {
     const profileData = await getCurrentUserData();
 
     console.log(profileData)
+
+    if (!profileData || !("submissions" in profileData)) {
+      return (
+        <div className="min-h-screen py-32">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <p className="text-center text-muted-foreground">
+              Profile data is unavailable.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    const submissions = profileData.submissions.map((submission) => ({
+      ...submission,
+      sourceCode:
+        typeof submission.sourceCode === "string"
+          ? submission.sourceCode
+          : JSON.stringify(submission.sourceCode) ?? "",
+    }));
+
   return (
    <div className="min-h-screen  py-32">
       <div className="container mx-auto px-4 max-w-7xl">
-        <UserInfoCard userData={profileData} />
+        <UserInfoCard
+          userData={{
+            ...profileData,
+            firstName: profileData.firstName ?? "User",
+            lastName: profileData.lastName ?? "",
+          }}
+        />
 
         <ProfileStats
           submissions={profileData.submissions}
@@ -22,7 +49,7 @@ const ProfilePage = async() => {
           playlistCount={profileData.playlists.length}
         />
 
-        <SubmissionsHistory submissions={profileData.submissions} />
+        <SubmissionsHistory submissions={submissions} />
 
         <div className="grid  gap-8">
           <SolvedProblems solvedProblems={profileData.solvedProblems} />

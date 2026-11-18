@@ -51,7 +51,7 @@ const SolvedProblems = ({
             Solved Problems
           </CardTitle>
 
-          <Badge variant="success">
+          <Badge variant="secondary">
             {solvedProblems.length}
           </Badge>
         </div>

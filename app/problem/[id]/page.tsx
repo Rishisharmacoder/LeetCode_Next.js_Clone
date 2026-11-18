@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 
 import Editor from "@monaco-editor/react";
 
-import React, { useState, useEffect } from "react";
+import React, { use, useState, useEffect } from "react";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -80,8 +80,9 @@ const getDifficultyColor = (difficulty: string) => {
 const ProblemIdPage = ({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) => {
+  const { id } = use(params);
   const [problem, setProblem] = useState<any>(null);
 
   const [selectedLanguage, setSelectedLanguage] =
@@ -106,21 +107,12 @@ const ProblemIdPage = ({
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const resolvedParams = await params;
-
-        const problemData = await getProblemById(
-          resolvedParams.id,
-        );
+        const problemData = await getProblemById(id);
 
         console.log(problemData);
 
-        if (problemData.Success) {
+        if (problemData.Success && problemData.data) {
           setProblem(problemData.data);
-
-          setCode(
-            problemData.data?.codeSnippets[selectedLanguage] ||
-              "",
-          );
         }
       } catch (error) {
         console.error("Error fetching problem:", error);
@@ -128,16 +120,14 @@ const ProblemIdPage = ({
     };
 
     fetchProblem();
-  }, [params]);
+  }, [id]);
 
   useEffect(() => {
     const fetchSubmissionHistory = async () => {
       try {
-        const resolvedParams = await params;
-
         const submissionHistory =
           await getAllSubmissionByCurrentUserForProblem(
-            resolvedParams.id,
+            id,
           );
 
         console.log(submissionHistory);
@@ -153,17 +143,18 @@ const ProblemIdPage = ({
     };
 
     fetchSubmissionHistory();
-  }, [params]);
+  }, [id]);
 
   useEffect(() => {
-    if (
-      problem &&
-      problem.codeSnippets[selectedLanguage]
-    ) {
-      setCode(
-        problem.codeSnippets[selectedLanguage],
-      );
-    }
+    const codeSnippets = problem?.codeSnippets;
+    const snippet =
+      codeSnippets !== null &&
+      typeof codeSnippets === "object" &&
+      !Array.isArray(codeSnippets)
+        ? codeSnippets[selectedLanguage]
+        : undefined;
+
+    setCode(typeof snippet === "string" ? snippet : "");
   }, [selectedLanguage, problem]);
 
   const handleRun = async () => {
@@ -449,9 +440,11 @@ const ProblemIdPage = ({
 
                   <Select
                     value={selectedLanguage}
-                    onValueChange={
-                      setSelectedLanguage
-                    }
+                    onValueChange={(value) => {
+                      if (value !== null) {
+                        setSelectedLanguage(value);
+                      }
+                    }}
                   >
                     <SelectTrigger className="w-32">
                       <SelectValue />

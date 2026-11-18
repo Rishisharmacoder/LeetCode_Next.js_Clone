@@ -253,7 +253,14 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Select value={difficulty} onValueChange={setDifficulty}>
+              <Select
+                value={difficulty}
+                onValueChange={(value) => {
+                  if (value !== null) {
+                    setDifficulty(value);
+                  }
+                }}
+              >
                 <SelectTrigger className="w-45">
                   <SelectValue placeholder="Select difficulty" />
                 </SelectTrigger>
@@ -270,7 +277,14 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
                 </SelectContent>
               </Select>
 
-              <Select value={selectedTag} onValueChange={setSelectedTag}>
+              <Select
+                value={selectedTag}
+                onValueChange={(value) => {
+                  if (value !== null) {
+                    setSelectedTag(value);
+                  }
+                }}
+              >
                 <SelectTrigger className="w-45">
                   <SelectValue placeholder="Select tag" />
                 </SelectTrigger>
@@ -462,7 +476,7 @@ const ProblemsTable = ({ problems, user }: { problems: any[]; user: any }) => {
         isOpen={isAddToPlaylistModalOpen}
         onClose={() => setIsAddToPlaylistModalOpen(false)}
         onSubmit={handleAddToPlaylist}
-        problemId={selectedProblemId}
+        problemId={selectedProblemId ?? ""}
       />
      
     </div>
