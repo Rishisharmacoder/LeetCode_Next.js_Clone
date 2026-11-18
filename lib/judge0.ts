@@ -1,40 +1,69 @@
+import "server-only";
+
 import axios from "axios";
 
 type Judge0Submission = {
   source_code: string;
   language_id: number;
   stdin: string;
-  expected_output: string;
+  expected_output?: string;
 };
 
 export type Judge0Result = {
   token: string;
-  status: { id: number };
+  status: { id: number; description?: string };
   stdout?: string | null;
   stderr?: string | null;
   compile_output?: string | null;
+  memory?: number | string | null;
+  time?: number | string | null;
 };
 
-export function getJudge0LanguageId(language: string): number | undefined {
-  const languageMap: Record<string, number> = {
-    PYTHON: 71,
-    JAVASCRIPT: 63,
-    JAVA: 62,
-    C: 50,
-    CPP: 54,
-    GO: 60,
-  };
-  return languageMap[language.toUpperCase()];
+function getExecutionConfig() {
+  const configuredProvider =
+    process.env.CODE_EXECUTION_PROVIDER?.trim().toLowerCase();
+  const onlineCompilerApiKey =
+    process.env.ONLINECOMPILER_API_KEY?.trim();
+  const provider =
+    configuredProvider ||
+    (onlineCompilerApiKey ? "onlinecompiler" : "judge0");
+
+  if (provider === "onlinecompiler") {
+    if (!onlineCompilerApiKey) {
+      throw new Error(
+        "ONLINECOMPILER_API_KEY is required when CODE_EXECUTION_PROVIDER is onlinecompiler",
+      );
+    }
+
+    return {
+      baseUrl: "https://api.onlinecompiler.io/api/judge0",
+      headers: { "X-Auth-Token": onlineCompilerApiKey },
+    };
+  }
+
+  if (provider === "judge0") {
+    const baseUrl = process.env.JUDGE0_API_URL?.replace(/\/+$/, "");
+    if (!baseUrl) {
+      throw new Error("JUDGE0_API_URL is required when using Judge0");
+    }
+
+    return { baseUrl, headers: undefined };
+  }
+
+  throw new Error(
+    `Unsupported CODE_EXECUTION_PROVIDER: ${configuredProvider}`,
+  );
 }
 
 export async function submitBatch(
   submissions: Judge0Submission[],
 ): Promise<Judge0Result[]> {
-  const { data } = await axios.post(
-    `${process.env.JUDGE0_API_URL}/submissions/batch?base64_encoded=false`,
+  const { baseUrl, headers } = getExecutionConfig();
+  const { data } = await axios.post<Judge0Result[]>(
+    `${baseUrl}/submissions/batch?base64_encoded=false`,
     { submissions },
+    { headers },
   );
-  console.log("Batch submission response:", data);
   return data;
 }
 
@@ -42,18 +71,22 @@ export async function submitBatch(
 export async function pollBatchResults(
   tokens: string[],
 ): Promise<Judge0Result[]> {
+  const { baseUrl, headers } = getExecutionConfig();
+
   while (true) {
-    const { data } = await axios.get(
-      `${process.env.JUDGE0_API_URL}/submissions/batch`,
+    const { data } = await axios.get<{
+      submissions: Judge0Result[];
+    }>(
+      `${baseUrl}/submissions/batch`,
       {
         params: {
           tokens: tokens.join(","),
           base64_encoded: false,
         },
+        headers,
       },
     );
 
-    console.log(data);
     const results = data.submissions;
 
     const isAllDone = results.every(

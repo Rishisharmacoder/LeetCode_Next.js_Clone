@@ -45,7 +45,7 @@ import { cn } from "@/lib/utils";
 
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
-import { getJudge0LanguageId } from "@/lib/judge0";
+import { getJudge0LanguageId } from "@/lib/judge0-languages";
 
 import { toast } from "sonner";
 

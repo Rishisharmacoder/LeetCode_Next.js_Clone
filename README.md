@@ -71,6 +71,10 @@ NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
 NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/"
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/"
+# Optional: set this key to use OnlineCompiler instead of Judge0
+ONLINECOMPILER_API_KEY="your_onlinecompiler_api_key"
+# Optional: choose "judge0" or "onlinecompiler"; with no value, OnlineCompiler is used when its key is set, otherwise Judge0
+CODE_EXECUTION_PROVIDER="onlinecompiler"
 ```
 
 ### 4. Generate Prisma client

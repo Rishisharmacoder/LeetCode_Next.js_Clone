@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
 import {
-  getJudge0LanguageId,
   pollBatchResults,
   submitBatch,
 } from "@/lib/judge0";
+import { getJudge0LanguageId } from "@/lib/judge0-languages";
 import { currentUserRole, getCurrentUser } from "@/modules/auth/actions";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -70,6 +70,13 @@ export async function POST(request: NextRequest) {
       for (const [language, solutionCode] of Object.entries(
         referenceSolutions,
       )) {
+        if (typeof solutionCode !== "string") {
+          return NextResponse.json(
+            { error: `Invalid reference solution for: ${language}` },
+            { status: 400 },
+          );
+        }
+
         // Step 2.1: Get Judge0 language ID for the current language
         const languageId = getJudge0LanguageId(language);
         if (!languageId) {
